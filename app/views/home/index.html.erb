@@ -1,2 +1,31 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<%= form_tag root_path, :method => :get do %>
+  <p>
+  	Search for weather at
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+
+<div id="first", style="float: left;">
+	<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=8&markers=#{@latitude}%2C#{@longitude}" %>
+</div>
+
+<div id="second", style="float: left;">
+	<h1>
+		Weather at <%= @location || "Undisclosed Location" %>
+	</h1>
+
+	<p>
+		<ul>
+			<li>
+				Temperate - <%= @weather["temperature"]["value"] rescue "not available"%>C
+			</li>
+			<li>
+				Humidity - <%= @weather["humidity"]["value"] rescue "not available"%>%
+			</li>
+			<li>
+				Cloudiness - <%= @weather["cloudiness"]["percent"] rescue "not available"%>%
+			</li>
+		</ul>
+	</p>
+</div>
