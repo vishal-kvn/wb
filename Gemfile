@@ -46,3 +46,7 @@ end
 group :test do
   gem 'turn', '< 0.8.3'
 end
+
+group :production do
+ gem 'pg'
+end
